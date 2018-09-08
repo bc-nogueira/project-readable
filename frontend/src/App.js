@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import * as Api from './utils/api';
 import './App.css';
 
 class App extends Component {
+  state = {
+    categories: []
+  }
+
+  async componentDidMount() {
+    try {
+      const categories = await Api.fetchCategories();
+      this.setState({ categories });
+      console.log(categories);
+    } catch(err) {
+      console.log('Erro ao carregar categorias: ' + err);
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Categories</h1>
+        <ul>
+          {this.state.categories.map(category => (
+            <li>
+              {category.name}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
