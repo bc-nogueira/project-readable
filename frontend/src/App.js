@@ -4,14 +4,15 @@ import './App.css';
 
 class App extends Component {
   state = {
-    categories: []
+    categories: [],
+    posts: []
   }
 
   async componentDidMount() {
     try {
       const categories = await Api.fetchCategories();
-      this.setState({ categories });
-      console.log(categories);
+      const posts = await Api.fetchPosts();
+      this.setState({ categories, posts });
     } catch(err) {
       console.log('Erro ao carregar categorias: ' + err);
     }
@@ -20,14 +21,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Categories</h1>
-        <ul>
-          {this.state.categories.map(category => (
-            <li>
-              {category.name}
-            </li>
-          ))}
-        </ul>
       </div>
     );
   }
