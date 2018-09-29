@@ -22,9 +22,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.posts.map(post => (
-          <Post post={post} />
-        ))}
+        <div className="row justify-content-center">
+          {this.state.posts.map(post => (
+            <Post post={post} />
+          ))}
+      </div>
       </div>
     );
   }

@@ -8,15 +8,15 @@ class Post extends Component {
     render() {
         const { post } = this.props;
         return (
-            <div key={post.id} className="w-30 mx-3 p-3 post-box">
+            <div key={post.id} className="col-xl-4 col-lg-5 col-md-8 col-sm-10 col-10 mx-3 p-3 post-box">
                 <div className="post-box-category w-30 mx-auto">{post.category}</div>
                 <div className="row mt-2">
-                    <div className="col-1 d-flex flex-column justify-content-around align-items-center">
+                    <div className="col-md-1 order-sm-first col-5 d-flex flex-column justify-content-around align-items-center">
                         <FontAwesomeIcon icon={faCaretUp} className="fa-3x" />
                         {post.voteScore}
                         <FontAwesomeIcon icon={faCaretDown} className="fa-3x" />
                     </div>
-                    <div className="col-8 d-flex flex-column justify-content-around align-items-center">
+                    <div className="col-md-8 order-first col-12 d-flex flex-column justify-content-around align-items-center">
                         <h5>{post.title}</h5>
                         <h6>
                         <FontAwesomeIcon icon={faUser} className="mr-2 fa-lg" />
@@ -27,7 +27,7 @@ class Post extends Component {
                         {formatDate(post.timestamp)}
                         </h6>
                     </div>
-                    <div className="col-3 d-flex flex-column justify-content-around align-items-center">
+                    <div className="col-md-3 col-5 d-flex flex-column justify-content-around align-items-center">
                         <div className="align-middle">
                         <FontAwesomeIcon icon={faComments} className="fa-lg mr-2" />
                         {post.commentCount}
