@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
-import * as Api from './utils/api';
+import { connect } from 'react-redux';
 import './App.css';
+import { getPosts } from './actions/posts';
 import Post from './components/Post';
 
 class App extends Component {
-  state = {
-    categories: [],
-    posts: []
-  }
-
-  async componentDidMount() {
-    try {
-      const categories = await Api.fetchCategories();
-      const posts = await Api.fetchPosts();
-      this.setState({ categories, posts });
-    } catch(err) {
-      console.log('Erro ao carregar categorias: ' + err);
-    }
+  componentDidMount() {
+    this.props.getPosts();
   }
 
   render() {
     return (
       <div className="App">
         <div className="row justify-content-center">
-          {this.state.posts.map(post => (
+          {this.props.posts && this.props.posts.map(post => (
             <Post post={post} />
           ))}
       </div>
@@ -32,4 +22,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps({ posts }) {
+  return { posts }
+}
+
+export default connect(mapStateToProps, { getPosts })(App);
