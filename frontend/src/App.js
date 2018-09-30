@@ -23,7 +23,9 @@ class App extends Component {
 }
 
 function mapStateToProps({ posts }) {
-  return { posts }
+  return { 
+    posts: posts.sort((a, b) => b.voteScore - a.voteScore)
+  }
 }
 
 export default connect(mapStateToProps, { getPosts })(App);
