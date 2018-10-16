@@ -6,7 +6,7 @@ class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <button type="button" class="btn btn-light rounded-circle">
+                <button type="button" className="btn btn-light rounded-circle">
                     <FontAwesomeIcon icon={faPlus} className="fa-2x text-success" />
                 </button>
                 
@@ -17,18 +17,18 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse row" id="navbarSupportedContent">
                     <div className="col-md-6 col-sm-10 select-navbar">
                         <span className="text-light">Categories:</span>
-                        <select class="custom-select w-50 ml-3">
-                            <option selected>All</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select value={'all'} className="custom-select w-50 ml-3">
+                            <option value="all">All</option>
+                            {this.props.categories && this.props.categories.map(categorie => (
+                                <option value={categorie.name} key={categorie.path}>{categorie.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="col-md-6 col-sm-10 select-navbar">
                         <span className="text-light">Order by:</span>
-                        <select class="custom-select w-50 ml-3">
-                            <option selected>Vote Score</option>
-                            <option value="1">Creation Date</option>
+                        <select value={'date'} className="custom-select w-50 ml-3">
+                            <option value="score">Vote Score</option>
+                            <option value="date">Creation Date</option>
                         </select>
                     </div>
                 </div>
